@@ -11,19 +11,6 @@ const commentColl = 'comments'
 
 module.exports = {}
 
-// -------------------------- //
-// --- comments interface --- //
-// -------------------------- //
-
-// module.exports.getAllComments = async (movieId) => {
-//     const database = client.db(databaseName);
-//     const comments = database.collection(commentColl);
-  
-//     const query = {movie_id: ObjectId(movieId)}
-//     let commentCursor = await comments.find(query);
-//     return commentCursor.toArray();
-//   }
-  
   module.exports.getOneComment = async (commentId) => {
     const database = client.db(databaseName);
     const comments = database.collection(commentColl);
@@ -33,19 +20,18 @@ module.exports = {}
     return commentCursor.toArray();
   }
   
-//   module.exports.createComment = async(movieId, newObj) =>{
-//     // TODO: Validate that movieId is for an existing movie
-//     const database = client.db(databaseName);
-//     const comments = database.collection(commentColl);
+
+  module.exports.deleteCommentById = async (commentId) => {
+    const database = client.db(databaseName);
+    const comments = database.collection(commentColl);
   
-//     const goodObj = {...newObj, movie_id: ObjectId(movieId), date: new Date()}
+    const deletionRules = {_id:ObjectId(commentId)}
+    const result = await comments.deleteOne(deletionRules);
   
-//     const result = await comments.insertOne(goodObj);
+    if(result.deletedCount != 1){
+      return {error: `Something went wrong. ${result.deletedCount} movies were deleted. Please try again.`}
+    };
   
-//     if(result.acknowledged){
-//       return { newObjectId: result.insertedId, message: `Comment created! ID: ${result.insertedId}` }
-//     } else {
-//       return {error: "Something went wrong. Please try again."}
-//     }
-//   }
+    return {message: `Deleted ${result.deletedCount} movie.`};
+  }
 

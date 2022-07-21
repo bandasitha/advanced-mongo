@@ -171,17 +171,3 @@ module.exports.updateCommentById = async (movieId, newObj) => {
   const updatedComment = module.exports.getById(movieId);
   return updatedComment;
 }
-
-module.exports.deleteCommentById = async (movieId) => {
-  const database = client.db(databaseName);
-  const movies = database.collection(commentColl);
-
-  const deletionRules = {_id:ObjectId(movieId)}
-  const result = await movies.deleteOne(deletionRules);
-
-  if(result.deletedCount != 1){
-    return {error: `Something went wrong. ${result.deletedCount} movies were deleted. Please try again.`}
-  };
-
-  return {message: `Deleted ${result.deletedCount} movie.`};
-}

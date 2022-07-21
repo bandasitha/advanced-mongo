@@ -121,9 +121,4 @@ router.put("/:id/comments", async (req, res, next) => {
   res.status(resultStatus).send(result);
 });
 
-router.delete("/:movieId/comments/:commentId", async (req, res, next) => {
-  const result = await movieData.deleteCommentById(req.params.commentId)
-  res.status(200).send("successfully deleted");
-});
-
 module.exports = router;
