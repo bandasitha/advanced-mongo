@@ -171,6 +171,7 @@ module.exports.updateCommentById = async (movieId, newObj) => {
   const updatedComment = module.exports.getById(movieId);
   return updatedComment;
 }
+<<<<<<< HEAD
 
 module.exports.deleteCommentById = async (commentId) => {
   const database = client.db(databaseName);
@@ -185,3 +186,5 @@ module.exports.deleteCommentById = async (commentId) => {
 
   return {message: `Deleted ${result.deletedCount} movie.`};
 }
+=======
+>>>>>>> 5036a823d0051682382abc82792f00ab21faf1f6

@@ -121,10 +121,13 @@ router.put("/:id/comments", async (req, res, next) => {
   res.status(resultStatus).send(result);
 });
 
+<<<<<<< HEAD
 // curl -X DELETE http://localhost:5000/movies/573a1390f29313caabcd4323/comments/5a9427648b0beebeb69579e7
 router.delete("/:movieId/comments/:commentId", async (req, res, next) => {
   const result = await movieData.deleteCommentById(req.params.commentId)
   res.status(200).send("successfully deleted");
 });
 
+=======
+>>>>>>> 5036a823d0051682382abc82792f00ab21faf1f6
 module.exports = router;
