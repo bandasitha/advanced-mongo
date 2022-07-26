@@ -128,11 +128,11 @@ module.exports.getAllComments = async (movieId) => {
   return commentCursor.toArray();
 }
 
-module.exports.getOneComment = async (movieId) => {
+module.exports.getOneComment = async (commentId) => {
   const database = client.db(databaseName);
   const comments = database.collection(commentColl);
 
-  const query = {movie_id: ObjectId(movieId)}
+  const query = {_id: ObjectId(commentId)}
   let commentCursor = await comments.find(query);
   return commentCursor.toArray();
 }
@@ -172,11 +172,11 @@ module.exports.updateCommentById = async (movieId, newObj) => {
   return updatedComment;
 }
 
-module.exports.deleteCommentById = async (movieId) => {
+module.exports.deleteCommentById = async (commentId) => {
   const database = client.db(databaseName);
   const movies = database.collection(commentColl);
 
-  const deletionRules = {_id:ObjectId(movieId)}
+  const deletionRules = {_id:ObjectId(commentId)}
   const result = await movies.deleteOne(deletionRules);
 
   if(result.deletedCount != 1){
