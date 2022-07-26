@@ -48,7 +48,7 @@ router.post("/", async (req, res, next) => {
 });
 
 
-// curl -X PUT -H "Content-Type: application/json" -d '{"plot":"butts..."}' http://localhost:5000/movies/573a1390f29313caabcd4eaf
+// curl -X PUT -H "Content-Type: application/json" -d '{"plot":"cool plot..."}' http://localhost:5000/movies/573a1390f29313caabcd4eaf
 router.put("/:id", async (req, res, next) => {
   let resultStatus;
   const result = await movieData.updateById(req.params.id, req.body)
@@ -107,13 +107,13 @@ router.post("/:id/comments", async(req, res) => {
   res.status(200).send(result);
 })
 
-// curl -X PUT -H "Content-Type: application/json" -d '{"name":"zombies...", "text": "butt"}' http://localhost:5000/movies/573a1391f29313caabcd7c9e/comments
-router.put("/:id/comments", async (req, res, next) => {
+// curl -X PUT -H "Content-Type: application/json" -d '{"text": "7/7 recommend"}' http://localhost:5000/movies/573a1390f29313caabcd4eaf/comments/62e01c884e64804c7c99c742
+router.put("/:movieId/comments/:commentId", async (req, res, next) => {
   let resultStatus;
-  const result = await movieData.updateCommentById(req.params.id, req.body)
+  const result = await movieData.updateCommentById(req.params.commentId, req.body)
 
   if (result.error) {
-    resultStatus = 400;
+    resultStatus = 404;
   } else {
     resultStatus = 200;
   }
