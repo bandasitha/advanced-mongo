@@ -1,3 +1,4 @@
+// renaming movies.test to only test for weather
 const request = require("supertest");
 const server = require("../server");
 
